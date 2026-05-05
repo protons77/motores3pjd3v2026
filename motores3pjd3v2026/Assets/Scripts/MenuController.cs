@@ -1,14 +1,26 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MenuController : MonoBehaviour
 {
-    public void OnStartClicked()
+    // Carrega uma cena pelo nome
+    public void LoadScene(string sceneName)
     {
-        GameManager.Instance.StartGame();
+        
+        GameManager.Instance.ChangeState(GameManager.GameState.Gameplay);
+        GameManager.Instance.LoadScene("GetStarted_Scene");
     }
 
-    public void OnQuitClicked()
+    // Sai do jogo
+    public void QuitGame()
     {
-        GameManager.Instance.QuitGame();
+        Debug.Log("Saindo do jogo...");
+        Application.Quit();
+    }
+
+    // Recarrega a cena atual (opcional)
+    public void ReloadScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
