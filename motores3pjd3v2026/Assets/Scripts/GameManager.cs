@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
@@ -17,7 +16,6 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        // Singleton
         if (Instance == null)
         {
             Instance = this;
@@ -43,44 +41,26 @@ public class GameManager : MonoBehaviour
 
     public void LoadScene(string sceneName)
     {
-        // Controle de acesso ao SceneManager
-        if (CanChangeScene(sceneName))
-        {
-            SceneManager.LoadScene(sceneName);
-        }
+        SceneManager.LoadScene(sceneName);
     }
 
-    private bool CanChangeScene(string sceneName)
+    // MENU
+    public void GoToMenu()
     {
-        // Regras simples (pode expandir)
-        switch (currentState)
-        {
-            case GameState.Iniciando:
-                return true;
-
-            case GameState.MenuPrincipal:
-                return true;
-
-            case GameState.Gameplay:
-                return true;
-
-            default:
-                return false;
-        }
+        ChangeState(GameState.MenuPrincipal);
+        LoadScene("MenuPrincipal");
     }
 
-    // Botão "Iniciar"
+    // GAMEPLAY
     public void StartGame()
     {
         ChangeState(GameState.Gameplay);
         LoadScene("GetStarted_Scene");
     }
 
-    // Botão "Sair"
+    // SAIR
     public void QuitGame()
     {
         Application.Quit();
     }
-    
-   
 }
