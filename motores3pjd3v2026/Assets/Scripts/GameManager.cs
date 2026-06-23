@@ -44,21 +44,24 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(sceneName);
     }
 
-    // MENU
+    
     public void GoToMenu()
     {
         ChangeState(GameState.MenuPrincipal);
         LoadScene("MenuPrincipal");
     }
 
-    // GAMEPLAY
+    
     public void StartGame()
     {
         ChangeState(GameState.Gameplay);
         LoadScene("GetStarted_Scene");
+        
+        
+        SceneManager.LoadScene("GUI", LoadSceneMode.Additive);
     }
 
-    // SAIR
+    
     public void QuitGame()
     {
         Application.Quit();
