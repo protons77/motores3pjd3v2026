@@ -2,11 +2,17 @@ using System;
 
 public static class PlayerObserverManager
 {
-    public static event Action<int> OnCoinCollected;
-
+    public static event Action OnCoinTriggered;
     
-    public static void TriggerCoinCollected(int currentCoins)
+    public static void TriggerCoinTriggered()
     {
-        OnCoinCollected?.Invoke(currentCoins);
+        OnCoinTriggered?.Invoke();
+    }
+    
+    public static event Action<int> OnCoinCountChanged;
+
+    public static void TriggerCoinCountChanged(int currentCoins)
+    {
+        OnCoinCountChanged?.Invoke(currentCoins);
     }
 }

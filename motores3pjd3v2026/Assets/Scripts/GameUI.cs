@@ -1,21 +1,20 @@
 using UnityEngine;
-using TMPro; 
+using TMPro;
+
 public class GameUI : MonoBehaviour
 {
     [SerializeField] private TMP_Text coinText;
+
     private void OnEnable()
     {
-      
-        PlayerObserverManager.OnCoinCollected += UpdateCoinDisplay;
+        PlayerObserverManager.OnCoinCountChanged += UpdateCoinDisplay;
     }
 
     private void OnDisable()
     {
-       
-        PlayerObserverManager.OnCoinCollected -= UpdateCoinDisplay;
+        PlayerObserverManager.OnCoinCountChanged -= UpdateCoinDisplay;
     }
 
-    
     private void UpdateCoinDisplay(int coinCount)
     {
         coinText.text = "Moedas: " + coinCount.ToString();
